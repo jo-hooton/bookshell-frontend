@@ -47,7 +47,6 @@ class App extends Component {
 
   addUserBooklet = (booklet) => {
     this.setState({userBooklets: [...this.state.userBooklets, booklet]}, this.props.history.push(`/mybooklets/${booklet.id}`))
-    console.log('booklet added')
   }
 
   componentDidMount() {

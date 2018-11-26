@@ -13,8 +13,8 @@ const Header = props =>
                props.username ?
                 `Welcome back, ${props.username}!`:
                 <>
-                <Button label='Log in' onClick={props.loginRoute}>LOG IN</Button>
-                <Button onClick={props.signUpRoute}>SIGN UP</Button>
+                <Button label='Log in' color='primary' onClick={props.loginRoute}>LOG IN</Button>
+                <Button label='Sign Up' color='primary' onClick={props.signUpRoute}>SIGN UP</Button>
                 </>
             
              }

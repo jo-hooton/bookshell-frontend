@@ -10,11 +10,11 @@ class ListItemForm extends React.Component {
     heading: "",
     content: "",
     button: "active"
-  };
+  }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-  };
+  }
 
   buttonClick = () => {
     this.props.handleClick({

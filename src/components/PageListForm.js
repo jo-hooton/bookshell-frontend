@@ -1,6 +1,6 @@
 import React from "react"
 
-import ListItemForm from "ListItemForm"
+import ListItemForm from "./ListItemForm"
 import API from "../API"
 
 import TextField from "@material-ui/core/TextField"
@@ -46,9 +46,9 @@ class PageListForm extends React.Component {
     API.savePage(title, heading, sub_heading, listItems).then(data => {
       if (data.error) {
         alert("Nope")
-      } else {
-      null
-      // something about errors
+      // } else {
+      // null
+      // // something about errors
       }
     });
   };
@@ -90,7 +90,7 @@ class PageListForm extends React.Component {
           variant="contained"
           color="primary"
         >
-          Save CV
+          Save Page
         </Button>
         </div>
       </>

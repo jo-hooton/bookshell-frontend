@@ -19,7 +19,7 @@ class Booklets extends React.Component {
     API.getUserBooklets()
       .then(data => {
         if (data.error) {
-          alert('You are not signed in, person.')
+          alert('You are not signed in.')
         } else {
           this.setState({ booklets: data })
         }
@@ -43,7 +43,7 @@ class Booklets extends React.Component {
         { booklets.length === 0 && <p>You don't have any booklets yet!</p>}
         {
           booklets.map(booklet =>
-            <Booklet key={booklet.id} booklet={booklet} />
+            <Booklet key={booklet.id} booklets={booklets} booklet={booklet} />
           )
         }
       </div>

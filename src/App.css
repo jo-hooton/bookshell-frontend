@@ -9,19 +9,23 @@
   text-align: center;
 }
 
-.App-logo {
+.App-logo, .logo-text {
   height: 7vmin;
   margin: 10px;
   display: flex;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #000000;
   min-height: 20px;
   display: flex;
   flex-direction: row;
   align-items: flex;
   justify-content: left;
   font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+* {
   color: white;
 }
