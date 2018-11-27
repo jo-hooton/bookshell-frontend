@@ -1,16 +1,16 @@
 import React from "react"
 
-import ListItemForm from "./ListItemForm"
+import GalleryItemForm from "./GalleryItemForm"
 import API from "../API"
 
 import TextField from "@material-ui/core/TextField"
 import Button from '@material-ui/core/Button'
 
-class PageListForm extends React.Component {
+class PageGalleryForm extends React.Component {
   state = {
     heading: "",
-    subHeading: "",
-    listItems: [],
+    sub_heading: "",
+    galleryItems: [],
     numItems: 1
   }
 
@@ -26,25 +26,25 @@ class PageListForm extends React.Component {
 
   handleItemClick = item => {
     this.setState({
-      listItems: [...this.state.listItems, item]
+      galleryItems: [...this.state.galleryItems, item]
     })
   }
 
-  showListItemForm = () => {
+  showGalleryItemForm = () => {
     let counter = 0
     let itemArr = []
     for (counter; counter < this.state.numItems; counter++) {
       itemArr.push(
-        <ListItemForm handleClick={this.handleItemClick} />
+        <GalleryItemForm handleClick={this.handleItemClick} />
       )
     }
     return itemArr
   }
 
   savePage = () => {
-    const { heading, sub_heading, listItems } = this.state
+    const { heading, sub_heading, galleryItems } = this.state
     const { booklet } = this.props
-    API.listPage(heading, heading, sub_heading, listItems, booklet.id).then(data => {
+    API.galleryPage(heading, heading, sub_heading, galleryItems, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
       // } else {
@@ -57,7 +57,7 @@ class PageListForm extends React.Component {
   render() {
     return (
       <>
-        <h1>New List</h1>
+        <h1>New Image Gallery</h1>
         <TextField
           id="headingInput"
           label="Heading"
@@ -76,14 +76,14 @@ class PageListForm extends React.Component {
           name="subHeading"
         />
         <br />
-        <h2>List Items</h2>
-        {this.showListItemForm()}
+        <h2>Gallery Items</h2>
+        {this.showGalleryItemForm()}
         <Button
           onClick={this.addItem}
           variant="contained"
           color="primary"
         >
-          Add Another Item
+          Add Another Image
         </Button>
         <div>
         <Button
@@ -91,7 +91,7 @@ class PageListForm extends React.Component {
           variant="contained"
           color="primary"
         >
-          Save Page
+          Save Gallery
         </Button>
         </div>
       </>
@@ -100,4 +100,4 @@ class PageListForm extends React.Component {
   }
 }
 
-export default PageListForm;
+export default PageGalleryForm;

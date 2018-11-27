@@ -2,10 +2,13 @@ import React from 'react'
 
 import API from '../API'
 import Booklet from './Booklet'
+import BookletPreview from './BookletPreview'
+
+import { Route, Switch } from 'react-router-dom'
 
 class Booklets extends React.Component {
   state = {
-    booklets: []
+    booklets: [],
   }
 
   style = {
@@ -26,6 +29,10 @@ class Booklets extends React.Component {
       })
   }
 
+  handleClick = (id) => {
+    this.props.history.push(`/mybooklets/${id}`)
+  }
+
   componentDidMount() {
     if (!this.props.username) {
       this.props.history.push('/login')
@@ -36,16 +43,25 @@ class Booklets extends React.Component {
 
   render () {
     const { booklets } = this.state
-
+    
     return (
       <div style={this.style} className='user-list'>
         <h3>Your Booklets</h3>
         { booklets.length === 0 && <p>You don't have any booklets yet!</p>}
-        {
-          booklets.map(booklet =>
-            <Booklet key={booklet.id} booklets={booklets} booklet={booklet} />
-          )
-        }
+        { 
+          
+          <Switch>
+            <Route path='/mybooklets/:id' render={props => <Booklet {...props} booklets={booklets} />} />
+            <Route path='/mybooklets' render={props => {
+              return <>
+              {booklets.map(booklet =>
+                <BookletPreview key={booklet.id} booklet={booklet} handleClick={this.handleClick}/>
+              )}
+              </>
+            }}/>
+          </Switch>
+        
+      }
       </div>
     )
   }

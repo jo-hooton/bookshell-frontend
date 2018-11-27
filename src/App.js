@@ -54,7 +54,6 @@ class App extends Component {
     API.validate()
       .then(user => {
         this.login(user)
-        this.props.history.push('/mybooklets')
       })
       .catch(error => this.props.history.push('/login'))
   }
@@ -67,12 +66,11 @@ class App extends Component {
       <CssBaseline />
       <div className="App">
       <Header username={username} logout={logout} createBooklet={createBooklet} signUpRoute={signUpRoute} loginRoute={loginRoute} />
+      <Switch>
       <Route path='/login' render={props => <LoginForm {...props} login={login} signUpRoute={signUpRoute} />} />
       <Route path='/signup' render={props => <SignUpForm {...props} login={login} loginRoute={loginRoute} />} />
       <Route path='/createbooklet' render={props => <NewBookletForm {...props} addUserBooklet={addUserBooklet}/>} />
-      <Switch>
-      <Route path='/mybooklets/:id' render={props => <Booklet {...props} userBooklets={userBooklets} />} />
-      <Route path='/mybooklets' render={props => <Booklets {...props} username={username} userBooklets={userBooklets} />} />
+      <Route path='/' render={props => <Booklets {...props} username={username} />} />
       </ Switch>
       </div>
       </React.Fragment>

@@ -52,13 +52,13 @@ class API {
         }).then(resp => resp.json())
     }
 
-    static listPage(title, heading, sub_heading, listItems, booklet_id) {
+    static listPage(pageTitle, heading, sub_heading, listItems, booklet_id) {
         const token = localStorage.getItem("token")
         return fetch('http://localhost:3001/pages', {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: token },
         body: JSON.stringify({
-            title,
+            pageTitle,
             heading,
             sub_heading,
             listItems, 
@@ -66,6 +66,50 @@ class API {
           })
         }).then(resp => resp.json())
     }
+
+    static textPage(pageTitle, heading, sub_heading, content, booklet_id) {
+      const token = localStorage.getItem("token")
+      return fetch('http://localhost:3001/pages', {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: token },
+      body: JSON.stringify({
+          pageTitle,
+          heading,
+          sub_heading,
+          content, 
+          booklet_id
+        })
+      }).then(resp => resp.json())
+  }
+
+  static imagePage(pageTitle, image_title, url, booklet_id) {
+    const token = localStorage.getItem("token")
+    return fetch('http://localhost:3001/pages', {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: token },
+    body: JSON.stringify({
+        pageTitle,
+        image_title,
+        url,
+        booklet_id
+      })
+    }).then(resp => resp.json())
+  }
+
+  static galleryPage(pageTitle, heading, sub_heading, galleryItems, booklet_id) {
+    const token = localStorage.getItem("token")
+    return fetch('http://localhost:3001/pages', {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: token },
+    body: JSON.stringify({
+        pageTitle,
+        heading,
+        sub_heading,
+        galleryItems, 
+        booklet_id
+      })
+    }).then(resp => resp.json())
+  }
 
 }
 
