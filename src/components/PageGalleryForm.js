@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button'
 class PageGalleryForm extends React.Component {
   state = {
     heading: "",
-    sub_heading: "",
+    subHeading: "",
     galleryItems: [],
     numItems: 1
   }
@@ -42,9 +42,9 @@ class PageGalleryForm extends React.Component {
   }
 
   savePage = () => {
-    const { heading, sub_heading, galleryItems } = this.state
+    const { heading, subHeading, galleryItems } = this.state
     const { booklet } = this.props
-    API.galleryPage(heading, heading, sub_heading, galleryItems, booklet.id).then(data => {
+    API.galleryPage(heading, heading, subHeading, galleryItems, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
       // } else {
@@ -57,6 +57,7 @@ class PageGalleryForm extends React.Component {
   render() {
     return (
       <>
+       <div className='page-form'>
         <h1>New Image Gallery</h1>
         <TextField
           id="headingInput"
@@ -94,6 +95,7 @@ class PageGalleryForm extends React.Component {
           Save Gallery
         </Button>
         </div>
+      </div>
       </>
   
     )

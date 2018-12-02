@@ -28,14 +28,13 @@ class GalleryItemForm extends React.Component {
   render() {
     return (
       <div>
-        <TextField 
+        <TextField
           id="imageInput"
           label="Image URL"
           value={this.state.image}
           onChange={this.handleChange}
           margin="normal"
           name="image"
-          type="image"
         />
         <br />
         <TextField

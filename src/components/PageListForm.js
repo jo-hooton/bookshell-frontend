@@ -42,9 +42,9 @@ class PageListForm extends React.Component {
   }
 
   savePage = () => {
-    const { heading, sub_heading, listItems } = this.state
+    const { heading, subHeading, listItems } = this.state
     const { booklet } = this.props
-    API.listPage(heading, heading, sub_heading, listItems, booklet.id).then(data => {
+    API.listPage(heading, heading, subHeading, listItems, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
       // } else {
@@ -57,6 +57,7 @@ class PageListForm extends React.Component {
   render() {
     return (
       <>
+       <div className='page-form'>
         <h1>New List</h1>
         <TextField
           id="headingInput"
@@ -94,6 +95,7 @@ class PageListForm extends React.Component {
           Save Page
         </Button>
         </div>
+      </div>
       </>
   
     )

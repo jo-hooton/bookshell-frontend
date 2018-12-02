@@ -24,7 +24,7 @@ class Booklets extends React.Component {
         if (data.error) {
           alert('You are not signed in.')
         } else {
-          this.setState({ booklets: data })
+          this.setState({ booklets: data.data })
         }
       })
   }
@@ -46,15 +46,16 @@ class Booklets extends React.Component {
     
     return (
       <div style={this.style} className='user-list'>
-        <h3>Your Booklets</h3>
-        { booklets.length === 0 && <p>You don't have any booklets yet!</p>}
+       
         { 
           
           <Switch>
             <Route path='/mybooklets/:id' render={props => <Booklet {...props} booklets={booklets} />} />
             <Route path='/mybooklets' render={props => {
               return <>
-              {booklets.map(booklet =>
+               <h3>Your Booklets</h3>
+               { booklets.length === 0 && <p>You don't have any booklets yet!</p>} 
+               {booklets.map(booklet =>
                 <BookletPreview key={booklet.id} booklet={booklet} handleClick={this.handleClick}/>
               )}
               </>

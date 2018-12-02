@@ -3,7 +3,6 @@ import React from "react"
 import API from "../API"
 
 import TextField from "@material-ui/core/TextField"
-import TextArea from "@material-ui/core/TextArea"
 import Button from '@material-ui/core/Button'
 
 class PageTextForm extends React.Component {
@@ -18,9 +17,11 @@ class PageTextForm extends React.Component {
   }
 
   savePage = () => {
-    const { heading, subHeading, content } = this.state
+    const textItem = this.state
+    const heading = this.state.heading
     const { booklet } = this.props
-    API.textPage(heading, heading, subHeading, content, booklet.id).then(data => {
+    console.log(textItem)
+    API.textPage(heading, textItem, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
       // } else {
@@ -33,6 +34,7 @@ class PageTextForm extends React.Component {
   render() {
     return (
       <>
+       <div className='page-form'>
         <h1>New Text Item</h1>
         <TextField
           id="headingInput"
@@ -52,8 +54,10 @@ class PageTextForm extends React.Component {
           name="subHeading"
         />
         <br />
-        <TextArea
+        <TextField
           id="content"
+          multiline
+          rows="4"
           label="Content"
           value={this.state.content}
           onChange={this.handleChange}
@@ -70,6 +74,7 @@ class PageTextForm extends React.Component {
           Save Page
         </Button>
         </div>
+      </div>
       </>
   
     )

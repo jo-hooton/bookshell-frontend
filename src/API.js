@@ -52,7 +52,7 @@ class API {
         }).then(resp => resp.json())
     }
 
-    static listPage(pageTitle, heading, sub_heading, listItems, booklet_id) {
+    static listPage(pageTitle, heading, subHeading, listItems, bookletId) {
         const token = localStorage.getItem("token")
         return fetch('http://localhost:3001/pages', {
         method: "POST",
@@ -60,43 +60,40 @@ class API {
         body: JSON.stringify({
             pageTitle,
             heading,
-            sub_heading,
+            subHeading,
             listItems, 
-            booklet_id
+            bookletId
           })
         }).then(resp => resp.json())
     }
 
-    static textPage(pageTitle, heading, sub_heading, content, booklet_id) {
+    static textPage(pageTitle, textItem, bookletId) {
       const token = localStorage.getItem("token")
       return fetch('http://localhost:3001/pages', {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: token },
       body: JSON.stringify({
           pageTitle,
-          heading,
-          sub_heading,
-          content, 
-          booklet_id
+          textItem,
+          bookletId
         })
       }).then(resp => resp.json())
   }
 
-  static imagePage(pageTitle, image_title, url, booklet_id) {
+  static imagePage(pageTitle, coverImage, bookletId) {
     const token = localStorage.getItem("token")
     return fetch('http://localhost:3001/pages', {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: token },
     body: JSON.stringify({
         pageTitle,
-        image_title,
-        url,
-        booklet_id
+        coverImage,
+        bookletId
       })
     }).then(resp => resp.json())
   }
 
-  static galleryPage(pageTitle, heading, sub_heading, galleryItems, booklet_id) {
+  static galleryPage(pageTitle, heading, subHeading, galleryItems, bookletId) {
     const token = localStorage.getItem("token")
     return fetch('http://localhost:3001/pages', {
     method: "POST",
@@ -104,9 +101,9 @@ class API {
     body: JSON.stringify({
         pageTitle,
         heading,
-        sub_heading,
+        subHeading,
         galleryItems, 
-        booklet_id
+        bookletId
       })
     }).then(resp => resp.json())
   }

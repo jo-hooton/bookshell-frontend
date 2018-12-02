@@ -5,6 +5,63 @@
   font-family: 'Roboto Mono', monospace;
 }
 
+/* booklet */
+
+#booklet {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forms-container {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  max-height: 40px;
+  flex-wrap: wrap;
+}
+
+.booklet-title {
+  display: flex;
+}
+
+.page-form {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+}
+
+/* mobile preview */
+
+.mobile-container {
+  position: relative;    
+}
+
+.mobile-preview {
+  max-width: 400px;
+}
+
+.mobile-preview-content {
+  max-width: 380px;
+  max-height: 660px;
+  position: absolute;
+  overflow: scroll;
+  top: 10px;
+  left: 10px;
+  margin-top: 50px;
+  padding-bottom: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.cover-image {
+  object-fit: cover;
+  width: 300px;
+}
+
 .App {
   text-align: center;
 }
