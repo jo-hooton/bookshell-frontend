@@ -9,6 +9,7 @@ import PageListForm from './PageListForm'
 import PageGalleryForm from './PageGalleryForm'
 
 import Button from '@material-ui/core/Button'
+import API from '../API';
 
 class Booklet extends React.Component {
 
@@ -36,12 +37,25 @@ class Booklet extends React.Component {
            this.setState({galleryButton: !this.state.galleryButton})
         }
 
+        publishBooklet = () => {
+           API.publishBooklet(this.state.booklet.id)
+           .then((resp) => {
+              this.props.updateBooklets(resp)
+              console.log(resp)
+              this.setState({
+               booklet: resp.data.find(booklet => booklet.id == this.props.match.params.id) 
+             })
+            })
+        }
+
+
         componentDidMount = () => {
-           this.setState({booklet: this.props.booklets.find(booklet => booklet.id == this.props.match.params.id)})
+           this.setState({booklet: this.props.booklets.find(booklet => booklet.id == this.props.match.params.id) })
         }
 
         render() {
-        const { imageButton, textButton, listButton, galleryButton, booklet } = this.state
+        const { imageButton, textButton, listButton, galleryButton, booklet, published } = this.state
+        const { handleImageClick, handleTextClick, handleListClick, handleGalleryClick } = this
         // const booklet = this.props.booklets.find(booklet => booklet.id == this.props.match.params.id)
         // console.log(this.props.match.params.id)
         return (
@@ -53,10 +67,10 @@ class Booklet extends React.Component {
             imageButton && textButton && listButton && galleryButton &&
             <>
             <div className='button-container' >
-            <Button onClick={this.handleImageClick} color='primary' variant="contained" label='Add Cover Image'>Add Cover Image</Button>
-            <Button onClick={this.handleTextClick} color='primary' variant="contained" label='Add Text'>Add Text</Button>
-            <Button onClick={this.handleListClick} color='primary' variant="contained" label='Add List'>Add List</Button> 
-            <Button onClick={this.handleGalleryClick} color='primary' variant="contained" label='Add Gallery'>Add Gallery</Button> 
+            <Button onClick={handleImageClick} color='primary' variant="contained" label='Add Cover Image'>Add Cover Image</Button>
+            <Button onClick={handleTextClick} color='primary' variant="contained" label='Add Text'>Add Text</Button>
+            <Button onClick={handleListClick} color='primary' variant="contained" label='Add List'>Add List</Button> 
+            <Button onClick={handleGalleryClick} color='primary' variant="contained" label='Add Gallery'>Add Gallery</Button> 
             </div>
             </> 
             
@@ -65,30 +79,34 @@ class Booklet extends React.Component {
 
             imageButton ||
             <>
-            <Button className='button-container' onClick={this.handleImageClick} color='primary' variant="contained" label='Cancel Cover Image'>Cancel Cover Image</Button>
-            <PageImageForm booklet_id={this.props.key} booklet={booklet} /> 
+            <Button className='button-container' onClick={handleImageClick} color='primary' variant="contained" label='Cancel Cover Image'>Cancel Cover Image</Button>
+            <PageImageForm booklet_id={this.props.key} booklet={booklet} handleImageClick={handleImageClick} /> 
             </>
         }
         {
             textButton ||
             <>
-            <Button className='button-container' onClick={this.handleTextClick} color='primary' variant="contained" label='Cancel Text'>Cancel Text</Button>
-            <PageTextForm booklet_id={this.props.key} booklet={booklet} /> 
+            <Button className='button-container' onClick={handleTextClick} color='primary' variant="contained" label='Cancel Text'>Cancel Text</Button>
+            <PageTextForm booklet_id={this.props.key} booklet={booklet} handleTextClick={handleTextClick} /> 
             </>
         }
         {
             listButton ||
             <>
-            <Button className='button-container' onClick={this.handleListClick} color='primary' variant="contained" label='Cancel List'>Cancel List</Button>
-            <PageListForm booklet_id={this.props.key} booklet={booklet} /> 
+            <Button className='button-container' onClick={handleListClick} color='primary' variant="contained" label='Cancel List'>Cancel List</Button>
+            <PageListForm booklet_id={this.props.key} booklet={booklet} handleListClick={handleListClick} /> 
             </>
         }
         {
             galleryButton ||
             <>
-            <Button className='button-container' onClick={this.handleGalleryClick} color='primary' variant="contained" label='Cancel Gallery'>Cancel Gallery</Button>
-            <PageGalleryForm booklet_id={this.props.key} booklet={booklet} /> 
+            <Button className='button-container' onClick={handleGalleryClick} color='primary' variant="contained" label='Cancel Gallery'>Cancel Gallery</Button>
+            <PageGalleryForm booklet_id={this.props.key} booklet={booklet} handleGalleryClick={handleGalleryClick} /> 
             </>
+        }
+        {   booklet.published ?
+        <Button className='button-container' onClick={this.publishBooklet} color='secondary' variant="contained" label='Publish Booklet'>Unpublish Booklet</Button> :
+        <Button className='button-container' onClick={this.publishBooklet} color='secondary' variant="contained" label='Publish Booklet'>Publish Booklet</Button>
         }
         </div>
         <div>

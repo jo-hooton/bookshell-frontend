@@ -19,13 +19,12 @@ class PageImageForm extends React.Component {
   savePage = () => {
     const coverImage = this.state
     const title = this.state.title
-    const { booklet } = this.props
+    const { booklet,  } = this.props
     API.imagePage(title, coverImage, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
-      // } else {
-      // null
-      // // something about errors
+      } else {
+      this.props.handleImageClick()
       }
     })
   }

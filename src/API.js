@@ -43,13 +43,26 @@ class API {
 
     static newBooklet(title) {
         const token = localStorage.getItem("token")
+        const published = false
         return fetch("http://localhost:3001/booklets", {
           method: "POST",
           headers: { "Content-Type": "application/json", Authorization: token },
           body: JSON.stringify({
-            title
+            title,
+            published
           })
         }).then(resp => resp.json())
+    }
+
+    static publishBooklet (bookletId) {
+       const token = localStorage.getItem("token")
+       return fetch(`http://localhost:3001/publish_booklet`, {
+         method: "PATCH",
+         headers: { "Content-Type": "application/json", Authorization: token },
+         body: JSON.stringify({
+           id: bookletId
+         })
+       }).then(resp => resp.json())
     }
 
     static listPage(pageTitle, heading, subHeading, listItems, bookletId) {

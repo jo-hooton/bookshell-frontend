@@ -24,9 +24,8 @@ class PageTextForm extends React.Component {
     API.textPage(heading, textItem, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
-      // } else {
-      // null
-      // // something about errors
+      } else {
+      this.props.handleTextClick()
       }
     })
   }

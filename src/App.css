@@ -5,11 +5,43 @@
   font-family: 'Roboto Mono', monospace;
 }
 
+/* header */
+
+.app-header {
+  background-color: #000000;
+  min-height: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex;
+  justify-content: space-around;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+#logo {
+  display: flex;
+  flex-direction: row;
+}
+
+.app-logo, .logo-text {
+  height: 7vmin;
+  margin: 10px;
+  display: flex;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-self: right;
+}
+
+
+
 /* booklet */
 
 #booklet {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .forms-container {
@@ -66,22 +98,8 @@
   text-align: center;
 }
 
-.App-logo, .logo-text {
-  height: 7vmin;
-  margin: 10px;
-  display: flex;
-}
 
-.App-header {
-  background-color: #000000;
-  min-height: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex;
-  justify-content: left;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+
 
 * {
   color: white;

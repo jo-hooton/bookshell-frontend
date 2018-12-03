@@ -41,6 +41,10 @@ class Booklets extends React.Component {
     }
   }
 
+  updateBooklets = (booklets) => {
+    this.setState({booklets: booklets})
+  }
+
   render () {
     const { booklets } = this.state
     
@@ -50,7 +54,7 @@ class Booklets extends React.Component {
         { 
           
           <Switch>
-            <Route path='/mybooklets/:id' render={props => <Booklet {...props} booklets={booklets} />} />
+            <Route path='/mybooklets/:id' render={props => <Booklet {...props} updateBooklets={this.updateBooklets} booklets={booklets} />} />
             <Route path='/mybooklets' render={props => {
               return <>
                <h3>Your Booklets</h3>

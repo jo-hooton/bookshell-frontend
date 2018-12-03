@@ -47,9 +47,8 @@ class PageGalleryForm extends React.Component {
     API.galleryPage(heading, heading, subHeading, galleryItems, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
-      // } else {
-      // null
-      // // something about errors
+      } else {
+      this.props.handleGalleryClick()
       }
     })
   }

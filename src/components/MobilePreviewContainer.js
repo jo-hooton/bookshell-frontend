@@ -29,7 +29,7 @@ class MobilePreviewContainer extends React.Component {
                 </>
                 )
                 }
-                <p>____________________</p>
+                ______________
                 {page.lists.map(list => 
                     <>
                     <h3>{list.heading}</h3>
@@ -41,6 +41,21 @@ class MobilePreviewContainer extends React.Component {
                       </>  )}
                     </>
                     )}
+                {page.galleries.map(gallery => 
+                    <>
+                    <h3>{gallery.heading}</h3>
+                    <h5>{gallery.sub_heading}</h5>
+                    {gallery.gallery_items.map(galleryItem => 
+                      <>
+                      <h5>{galleryItem.heading}</h5>
+                      <img className='cover-image'
+                           src={galleryItem.image} 
+                           alt={galleryItem.heading}>
+                      </img>
+                      <p>{galleryItem.sub_heading}</p>
+                      </>  )}
+                    </>
+                )}
                     
                 </>
             )

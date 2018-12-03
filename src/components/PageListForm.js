@@ -47,9 +47,8 @@ class PageListForm extends React.Component {
     API.listPage(heading, heading, subHeading, listItems, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
-      // } else {
-      // null
-      // // something about errors
+      } else {
+      this.props.handleListClick()
       }
     })
   }
