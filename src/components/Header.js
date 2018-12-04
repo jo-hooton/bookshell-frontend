@@ -16,6 +16,7 @@ const Header = props =>
                 <h6>{`Signed in as ${props.username}`}</h6>:
                 <>
                 <div className='nav' >
+                <Button label='All Booklets' color='primary' onClick={props.allBooklets}>ALL BOOKLETS</Button>
                 <Button label='Log in' color='primary' onClick={props.loginRoute}>LOG IN</Button>
                 <Button label='Sign Up' color='primary' onClick={props.signUpRoute}>SIGN UP</Button>
                 </div>
@@ -26,10 +27,11 @@ const Header = props =>
              {
                 props.username &&
                 <>
-                <div className='nav' >
-                <Button onClick={props.createBooklet}>CREATE</Button>
-                <Button onClick={props.myBooklets}>MY BOOKLETS</Button>
-                <Button onClick={props.logout}>LOG OUT</Button>
+                <div className='nav'>
+                <Button label='All Booklets' color='primary' onClick={props.allBooklets}>ALL BOOKLETS</Button>
+                <Button label='Create Booklet' onClick={props.createBooklet}>CREATE</Button>
+                <Button label='My Booklets' onClick={props.myBooklets}>MY BOOKLETS</Button>
+                <Button label='Log out' onClick={props.logout}>LOG OUT</Button>
                 </div>
                 </>
              }

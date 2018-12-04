@@ -80,7 +80,7 @@ class Booklet extends React.Component {
             imageButton ||
             <>
             <Button className='button-container' onClick={handleImageClick} color='primary' variant="contained" label='Cancel Cover Image'>Cancel Cover Image</Button>
-            <PageImageForm booklet_id={this.props.key} booklet={booklet} handleImageClick={handleImageClick} /> 
+            <PageImageForm updateBooklets={this.props.updateBooklets} booklet_id={this.props.key} booklet={booklet} handleImageClick={handleImageClick} /> 
             </>
         }
         {

@@ -27,6 +27,11 @@ class API {
           })
         }).then(resp => resp.json());
       }
+
+    static getAllBooklets () {
+      return fetch("http://localhost:3001/booklets")
+      .then(resp => resp.json())
+    }
   
     static validate () {
       const token = localStorage.getItem('token')
@@ -93,15 +98,15 @@ class API {
       }).then(resp => resp.json())
   }
 
-  static imagePage(pageTitle, coverImage, bookletId) {
+  static image(title, image, bookletId) {
     const token = localStorage.getItem("token")
-    return fetch('http://localhost:3001/pages', {
+    return fetch('http://localhost:3001/images', {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: token },
     body: JSON.stringify({
-        pageTitle,
-        coverImage,
-        bookletId
+        title: title,
+        url: image,
+        booklet_id: bookletId
       })
     }).then(resp => resp.json())
   }

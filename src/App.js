@@ -9,6 +9,7 @@ import SignUpForm from './components/SignUpForm'
 import Booklets from './components/Booklets'
 import Booklet from './components/Booklet'
 import NewBookletForm from './components/NewBookletForm'
+import AllBooklets from './components/AllBooklets'
 
 import './App.css';
 
@@ -49,6 +50,10 @@ class App extends Component {
     this.props.history.push('/mybooklets')
   }
 
+  allBooklets = () => {
+    this.props.history.push('/booklets')
+  }
+
   addUserBooklet = (booklet) => {
     this.setState({userBooklets: [...this.state.userBooklets, booklet]}, this.props.history.push(`/mybooklets/${booklet.id}`))
   }
@@ -64,12 +69,12 @@ class App extends Component {
 
   render() {
     const { username, userBooklets } = this.state
-    const { login, logout, createBooklet, addUserBooklet, signUpRoute, loginRoute, myBooklets } = this
+    const { login, logout, createBooklet, addUserBooklet, signUpRoute, loginRoute, myBooklets, allBooklets } = this
     return (
     <React.Fragment>
       <CssBaseline />
       <div className="App">
-      <Header username={username} logout={logout} createBooklet={createBooklet} signUpRoute={signUpRoute} loginRoute={loginRoute} myBooklets={myBooklets} />
+      <Header username={username} logout={logout} createBooklet={createBooklet} signUpRoute={signUpRoute} loginRoute={loginRoute} myBooklets={myBooklets} allBooklets={allBooklets} />
       <Switch>
       <Route path='/login' render={props => <LoginForm {...props} login={login} signUpRoute={signUpRoute} />} />
       <Route path='/signup' render={props => <SignUpForm {...props} login={login} loginRoute={loginRoute} />} />

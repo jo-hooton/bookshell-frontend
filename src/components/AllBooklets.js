@@ -6,7 +6,7 @@ import BookletPreview from './BookletPreview'
 
 import { Route, Switch } from 'react-router-dom'
 
-class Booklets extends React.Component {
+class AllBooklets extends React.Component {
   state = {
     booklets: [],
   }
@@ -15,15 +15,14 @@ class Booklets extends React.Component {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    flexWrap: 'wrap', 
-    justifyContent: 'center'
+    flexWrap: 'wrap'
   }
 
-  getUserBooklets() {
-    API.getUserBooklets()
+  getBooklets() {
+    API.getAllBooklets()
       .then(data => {
         if (data.error) {
-          alert('You are not signed in.')
+          alert('No worky')
         } else {
           this.setState({ booklets: data.data })
         }
@@ -31,15 +30,11 @@ class Booklets extends React.Component {
   }
 
   handleClick = (id) => {
-    this.props.history.push(`/mybooklets/${id}`)
+    this.props.history.push(`/booklets/${id}`)
   }
 
   componentDidMount() {
-    if (!this.props.username) {
-      this.props.history.push('/login')
-    } else {
-      this.getUserBooklets()
-    }
+      this.getBooklets()
   }
 
   updateBooklets = (booklets) => {
@@ -55,13 +50,13 @@ class Booklets extends React.Component {
         { 
           
           <Switch>
-            <Route path='/mybooklets/:id' render={props => <Booklet {...props} updateBooklets={this.updateBooklets} booklets={booklets} />} />
-            <Route path='/mybooklets' render={props => {
+            <Route path='/booklets/:id' render={props => <Booklet {...props} updateBooklets={this.updateBooklets} booklets={booklets} />} />
+            <Route path='/booklets' render={props => {
               return <>
-              <h3>Your Booklets</h3>
+              <h3>All Published Booklets</h3>
               <div  style={this.style} className='user-list'>
-               { booklets.length === 0 && <p>You don't have any booklets yet!</p>} 
-               {booklets.map(booklet =>
+               { booklets.length === 0 && <p>No booklets availabobbles</p>} 
+               {booklets.map(booklet => booklet.published && 
                 <BookletPreview key={booklet.id} booklet={booklet} handleClick={this.handleClick}/>
               )}
               </div>
@@ -75,4 +70,4 @@ class Booklets extends React.Component {
   }
 }
 
-export default Booklets
+export default AllBooklets

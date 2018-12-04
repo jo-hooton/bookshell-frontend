@@ -6,7 +6,6 @@ import PhoneTemplate from './PhoneTemplate'
 class MobilePreviewContainer extends React.Component {
     
     getPages = (booklet) => {
-        console.log("booklet in getPages", booklet.pages)
         return booklet.pages.map(page => 
             this.getPageContent(page))
 
@@ -15,21 +14,15 @@ class MobilePreviewContainer extends React.Component {
     getPageContent = (page) => {
         return (
                 <>
-                {page.images.map(image => 
-                    <img className='cover-image'
-                         src={image.url} 
-                         alt={image.title}>
-                         </img> 
-                )}
                 {page.text_items.map(textItem => 
                 <>
-                <h3>{textItem.heading}</h3>
-                <h5>{textItem.sub_heading}</h5>
+                <h2 className="page-heading" >{textItem.heading}</h2>
+                <h3 className="page-sub-heading" >{textItem.sub_heading}</h3>
                 <p>{textItem.content}</p>
                 </>
                 )
                 }
-                ______________
+                
                 {page.lists.map(list => 
                     <>
                     <h3>{list.heading}</h3>
@@ -63,13 +56,19 @@ class MobilePreviewContainer extends React.Component {
 
     render() {
     const { booklet } = this.props
-    console.log(booklet.pages)
+    console.log(booklet)
     return(
         <>
         <div className='mobile-container' >
             <img className='mobile-preview' src={phone}></img>
             <div className='mobile-preview-content' >
                 <h1>{booklet.title}</h1>
+                {booklet.image &&
+                    <img className='cover-image'
+                         src={booklet.image.url} 
+                         alt={booklet.image.title}>
+                    </img> 
+                }
                 {this.getPages(booklet)}
             </div>
         </div>

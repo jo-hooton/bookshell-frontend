@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button'
 class PageImageForm extends React.Component {
   state = {
     title: "",
-    imageTitle: "",
     image: ""
   }
 
@@ -17,14 +16,14 @@ class PageImageForm extends React.Component {
   }
 
   savePage = () => {
-    const coverImage = this.state
-    const title = this.state.title
+    const { title, image } = this.state
     const { booklet,  } = this.props
-    API.imagePage(title, coverImage, booklet.id).then(data => {
+    API.image(title, image, booklet.id).then(data => {
       if (data.error) {
         alert("Nope")
       } else {
       this.props.handleImageClick()
+      this.props.updateBooklets(data)
       }
     })
   }
@@ -50,15 +49,6 @@ class PageImageForm extends React.Component {
           onChange={this.handleChange}
           margin="normal"
           name="image"
-        />
-        <br />
-        <TextField
-          id="altTextInput"
-          label="Alt Text"
-          value={this.state.imageTitle}
-          onChange={this.handleChange}
-          margin="normal"
-          name="imageTitle"
         />
         <br />
         <div>
