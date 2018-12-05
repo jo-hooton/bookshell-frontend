@@ -63,7 +63,9 @@ class Booklet extends React.Component {
         
         return (
         <>
+       
         <div id='booklet'>
+        {this.props.match.path.includes('mybooklets') &&
         <div className='forms-container'>
         <h1 className='booklet-title'>{this.state.booklet.title}</h1>
         {
@@ -119,6 +121,7 @@ class Booklet extends React.Component {
         <Button className='button-container' onClick={this.publishBooklet} color='secondary' variant="contained" label='Publish Booklet'>Publish Booklet</Button>
         }
         </div>
+        }
         <div>
         <MobilePreviewContainer booklet={booklet} />
         </div>
