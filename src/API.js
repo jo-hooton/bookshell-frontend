@@ -111,6 +111,19 @@ class API {
     }).then(resp => resp.json())
   }
 
+  static editImage(title, image, imageId) {
+    const token = localStorage.getItem("token")
+    return fetch(`http://localhost:3001/images/${imageId}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", Authorization: token },
+    body: JSON.stringify({
+        title: title,
+        url: image,
+        id: imageId
+      })
+    }).then(resp => resp.json())
+  }
+
   static galleryPage(pageTitle, heading, subHeading, galleryItems, bookletId) {
     const token = localStorage.getItem("token")
     return fetch('http://localhost:3001/pages', {

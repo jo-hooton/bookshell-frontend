@@ -38,7 +38,7 @@ class Booklets extends React.Component {
     if (!this.props.username) {
       this.props.history.push('/login')
     } else {
-      this.getUserBooklets()
+      this.props.getUserBooklets()
     }
   }
 
@@ -47,7 +47,7 @@ class Booklets extends React.Component {
   }
 
   render () {
-    const { booklets } = this.state
+    const { booklets } = this.props
     
     return (
       <div>
@@ -62,7 +62,7 @@ class Booklets extends React.Component {
               <div  style={this.style} className='user-list'>
                { booklets.length === 0 && <p>You don't have any booklets yet!</p>} 
                {booklets.map(booklet =>
-                <BookletPreview key={booklet.id} booklet={booklet} handleClick={this.handleClick}/>
+                <BookletPreview route="mybooklets" key={booklet.id} booklet={booklet} handleClick={this.handleClick}/>
               )}
               </div>
               </>

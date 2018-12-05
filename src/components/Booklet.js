@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 import MobilePreviewContainer from './MobilePreviewContainer'
 import PageImageForm from './PageImageForm'
+import EditImageForm from './EditImageForm'
 import PageTextForm from './PageTextForm'
 import PageListForm from './PageListForm'
 import PageGalleryForm from './PageGalleryForm'
@@ -50,6 +51,7 @@ class Booklet extends React.Component {
 
 
         componentDidMount = () => {
+           console.log("booklets at componentdidmount", this.props.booklets)
            this.setState({booklet: this.props.booklets.find(booklet => booklet.id == this.props.match.params.id) })
         }
 
@@ -58,6 +60,7 @@ class Booklet extends React.Component {
         const { handleImageClick, handleTextClick, handleListClick, handleGalleryClick } = this
         // const booklet = this.props.booklets.find(booklet => booklet.id == this.props.match.params.id)
         // console.log(this.props.match.params.id)
+        
         return (
         <>
         <div id='booklet'>
@@ -67,7 +70,11 @@ class Booklet extends React.Component {
             imageButton && textButton && listButton && galleryButton &&
             <>
             <div className='button-container' >
+            {booklet.image?
+            <Button onClick={handleImageClick} color='primary' variant="contained" label='Edit Cover Image'>Edit Cover Image</Button>
+            :
             <Button onClick={handleImageClick} color='primary' variant="contained" label='Add Cover Image'>Add Cover Image</Button>
+            } 
             <Button onClick={handleTextClick} color='primary' variant="contained" label='Add Text'>Add Text</Button>
             <Button onClick={handleListClick} color='primary' variant="contained" label='Add List'>Add List</Button> 
             <Button onClick={handleGalleryClick} color='primary' variant="contained" label='Add Gallery'>Add Gallery</Button> 
@@ -80,7 +87,10 @@ class Booklet extends React.Component {
             imageButton ||
             <>
             <Button className='button-container' onClick={handleImageClick} color='primary' variant="contained" label='Cancel Cover Image'>Cancel Cover Image</Button>
-            <PageImageForm updateBooklets={this.props.updateBooklets} booklet_id={this.props.key} booklet={booklet} handleImageClick={handleImageClick} /> 
+            {booklet.image ?
+            <EditImageForm updateBooklets={this.props.updateBooklets} booklet={booklet} handleImageClick={handleImageClick} /> 
+            :
+            <PageImageForm updateBooklets={this.props.updateBooklets} booklet_id={this.props.key} booklet={booklet} handleImageClick={handleImageClick} /> }
             </>
         }
         {

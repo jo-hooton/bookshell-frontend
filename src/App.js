@@ -54,9 +54,20 @@ class App extends Component {
     this.props.history.push('/booklets')
   }
 
-  addUserBooklet = (booklet) => {
-    this.setState({userBooklets: [...this.state.userBooklets, booklet]}, this.props.history.push(`/mybooklets/${booklet.id}`))
+  getUserBooklets = () => {
+    API.getUserBooklets()
+      .then(data => {
+        if (data.error) {
+          alert('You are not signed in.')
+        } else {
+          this.setState({ userBooklets: data.data })
+        }
+      })
   }
+
+  addUserBooklet = (booklet) => {
+    this.setState({userBooklets: [...this.state.userBooklets, booklet]}, () => this.props.history.push(`/mybooklets/${booklet.id}`)
+  )}
 
   componentDidMount() {
     if (!localStorage.getItem('token')) return
@@ -69,7 +80,7 @@ class App extends Component {
 
   render() {
     const { username, userBooklets } = this.state
-    const { login, logout, createBooklet, addUserBooklet, signUpRoute, loginRoute, myBooklets, allBooklets } = this
+    const { login, logout, createBooklet, addUserBooklet, signUpRoute, loginRoute, myBooklets, allBooklets, getUserBooklets } = this
     return (
     <React.Fragment>
       <CssBaseline />
@@ -79,7 +90,8 @@ class App extends Component {
       <Route path='/login' render={props => <LoginForm {...props} login={login} signUpRoute={signUpRoute} />} />
       <Route path='/signup' render={props => <SignUpForm {...props} login={login} loginRoute={loginRoute} />} />
       <Route path='/createbooklet' render={props => <NewBookletForm {...props} addUserBooklet={addUserBooklet}/>} />
-      <Route path='/' render={props => <Booklets {...props} username={username} />} />
+      <Route path='/booklets' render={props => <AllBooklets/>} />      
+      <Route path='/mybooklets' render={props => <Booklets {...props} getUserBooklets={getUserBooklets} username={username} booklets={userBooklets}/>} />
       </ Switch>
       </div>
       </React.Fragment>

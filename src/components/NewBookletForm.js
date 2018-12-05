@@ -18,10 +18,11 @@ class NewBookletForm extends React.Component {
         const title = this.state.title
         API.newBooklet(title)
         .then(data => {
+            
             if (data.error) {
                 alert('Nope')
             } else {
-               this.props.addUserBooklet(data)
+               this.props.addUserBooklet(data.data)
             }
         })
     }

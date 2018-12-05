@@ -18,7 +18,11 @@ const theme = createMuiTheme({
         typography: {
             useNextVariants: true,
         },
+        button: {
+            margin: 200,
+        },
     }
+    
 })
 
 ReactDOM.render(

@@ -29,11 +29,18 @@
   flex-direction: row;
 }
 
-.app-logo, .logo-text {
+.app-logo {
   height: 7vmin;
-  margin: 10px;
+  margin-top: 20px;
+  margin-right: 0;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
+}
+
+.logo-text {
+  margin-top: 30px;
+  margin-left: 0;
 }
 
 .nav {
@@ -81,6 +88,7 @@
 
 .mobile-preview {
   max-width: 400px;
+  max-height: 100vh;
 }
 
 .mobile-preview-content {
@@ -98,8 +106,8 @@
 }
 
 .cover-image {
-  /* object-fit: cover; */
-  max-width: 349px;
+  object-fit: fill;
+  max-width: 316px;
   margin: 0px;
   padding: 0px;
 }
@@ -108,9 +116,16 @@
   margin: 0px;
 }
 
-.page-sub-heading {
-  color: #9e9afc;
+.mobile-sub-heading {
   margin: 0px;
+}
+
+.purple {
+  color: #9e9afc;
+}
+
+.preview-section {
+  margin-bottom: 50px;
 }
 
 

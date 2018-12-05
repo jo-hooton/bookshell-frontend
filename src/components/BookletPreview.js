@@ -29,6 +29,7 @@ import logo from '../images/cover-placeholder.jpg';
 const styles = {
   card: {
     maxWidth: 250,
+    height: 440,
     margin: 30,
   },
   media: {
@@ -40,11 +41,11 @@ const styles = {
 
 
 const BookletPreview = (props) => {
-  const { classes, booklet } = props
+  const { classes, booklet, route } = props
   const coverImage = booklet.image ? booklet.image.url : logo
   return (
-    <Link to={`mybooklets/${booklet.id}`}>
-    <Card className={classes.card} linkTo={`mybooklets/${booklet.id}`} >
+    <Link to={`${route}/${booklet.id}`}>
+    <Card className={classes.card} linkTo={`${route}/${booklet.id}`} >
       <CardActionArea>
         <CardMedia
           component="img"

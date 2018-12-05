@@ -57,7 +57,7 @@ class AllBooklets extends React.Component {
               <div  style={this.style} className='user-list'>
                { booklets.length === 0 && <p>No booklets availabobbles</p>} 
                {booklets.map(booklet => booklet.published && 
-                <BookletPreview key={booklet.id} booklet={booklet} handleClick={this.handleClick}/>
+                <BookletPreview route="booklets" key={booklet.id} booklet={booklet} handleClick={this.handleClick}/>
               )}
               </div>
               </>

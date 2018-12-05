@@ -5,7 +5,7 @@ import API from "../API"
 import TextField from "@material-ui/core/TextField"
 import Button from '@material-ui/core/Button'
 
-class PageImageForm extends React.Component {
+class EditImageForm extends React.Component {
   state = {
     title: "",
     image: ""
@@ -17,8 +17,8 @@ class PageImageForm extends React.Component {
 
   savePage = () => {
     const { title, image } = this.state
-    const { booklet,  } = this.props
-    API.image(title, image, booklet.id).then(data => {
+    const imageId = this.props.booklet.image.id
+    API.editImage(title, image, imageId).then(data => {
       if (data.error) {
         alert("Nope")
       } else {
@@ -32,7 +32,7 @@ class PageImageForm extends React.Component {
     return (
       <>
       <div className='page-form'>
-        <h1>New Cover Image</h1>
+        <h1>Edit Cover Image</h1>
         <TextField
           id="headingInput"
           label="Heading"
@@ -67,4 +67,4 @@ class PageImageForm extends React.Component {
   }
 }
 
-export default PageImageForm;
+export default EditImageForm;
