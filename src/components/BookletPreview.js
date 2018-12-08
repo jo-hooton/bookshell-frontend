@@ -23,6 +23,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
+
 import logo from '../images/cover-placeholder.jpg';
 
 
@@ -43,6 +44,7 @@ const styles = {
 const BookletPreview = (props) => {
   const { classes, booklet, route } = props
   const coverImage = booklet.image ? booklet.image.url : logo
+  
   return (
     <Link to={`${route}/${booklet.id}`}>
     <Card className={classes.card} linkTo={`${route}/${booklet.id}`} >
@@ -56,6 +58,7 @@ const BookletPreview = (props) => {
         />
         <CardContent>
           <h2>{booklet.title}</h2>
+          {/* <p>by {booklet.user_id}</p> */}
         </CardContent>
       </CardActionArea>
     </Card>

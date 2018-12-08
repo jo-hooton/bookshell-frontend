@@ -15,7 +15,8 @@ class AllBooklets extends React.Component {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'center'
   }
 
   getBooklets() {
@@ -55,7 +56,7 @@ class AllBooklets extends React.Component {
               return <>
               <h3>All Published Booklets</h3>
               <div  style={this.style} className='user-list'>
-               { booklets.length === 0 && <p>No booklets availabobbles</p>} 
+               { booklets.length === 0 && <div class="lds-ring"><div></div><div></div><div></div><div></div></div>} 
                {booklets.map(booklet => booklet.published && 
                 <BookletPreview route="booklets" key={booklet.id} booklet={booklet} handleClick={this.handleClick}/>
               )}

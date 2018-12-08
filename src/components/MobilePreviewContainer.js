@@ -4,6 +4,7 @@ import phone from '../images/phone.png'
 import PhoneTemplate from './PhoneTemplate'
 
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 // import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add'
@@ -11,7 +12,11 @@ import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
 import NavigationIcon from '@material-ui/icons/Navigation'
 
-import logo from '../images/cover-placeholder.jpg';
+
+
+import logo from '../images/cover-placeholder.jpg'
+import github from '../images/github-logo.png'
+import linkedin from '../images/linkedin-logo.png'
 
 
 class MobilePreviewContainer extends React.Component {
@@ -40,6 +45,37 @@ class MobilePreviewContainer extends React.Component {
                 <h2 className="page-heading" >{textItem.heading}</h2>
                 <h3 className="purple mobile-sub-heading" >{textItem.sub_heading}</h3>
                 <p>{textItem.content}</p>
+                </div>
+                </>
+                )
+                }
+
+                {page.profiles.map(profile => 
+                <>
+                <div className='preview-section'>
+                <h2 className="page-heading" >{profile.heading}</h2>
+                <h3 className="purple mobile-sub-heading" >{profile.sub_heading}</h3>
+                <img className='cover-image'
+                    src={profile.image} 
+                    alt={profile.heading}>
+                </img>
+                <p>{profile.bio}</p>
+                <div>
+                <a href={profile.github} target='blank'>
+                <img className='link-image'
+                    src={github} 
+                    alt={github}>
+                </img>
+                </a>
+                <a href={profile.linkedin} target='blank'>
+                <img className='link-image'
+                    src={linkedin} 
+                    alt={linkedin}>
+                </img>
+                </a>
+                </div>
+                <div>
+                </div>
                 </div>
                 </>
                 )

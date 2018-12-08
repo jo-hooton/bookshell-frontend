@@ -9,6 +9,14 @@ import PageTextForm from './PageTextForm'
 import PageListForm from './PageListForm'
 import PageGalleryForm from './PageGalleryForm'
 
+import {
+   BrowserView,
+   MobileView,
+   isBrowser,
+   isMobile
+ } from "react-device-detect";
+ 
+
 import Button from '@material-ui/core/Button'
 import API from '../API';
 

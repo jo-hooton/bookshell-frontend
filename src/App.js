@@ -75,7 +75,7 @@ class App extends Component {
       .then(user => {
         this.login(user)
       })
-      .catch(error => this.props.history.push('/login'))
+      .catch(error => this.props.history.push('/booklets'))
   }
 
   render() {
