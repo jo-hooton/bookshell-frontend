@@ -6,4 +6,6 @@ This project aims to address unecessary paper waste along with reducing printing
 
 Bookshell aims to be an accessible app. Please get in touch if you would like to suggest any improvements. 
 
+Watch demo video below:
+
 [![Watch demo](https://img.youtube.com/vi/UzeH_jQF2BM/maxresdefault.jpg)](https://youtu.be/UzeH_jQF2BM)
